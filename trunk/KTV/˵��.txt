@@ -12,6 +12,7 @@ http://bitbucket.org/tortoisehg/thg-winbuild/downloads/mercurial-1.5.1.msi
 http://qt.nokia.com/downloads/windows-cpp-vs2008
 把源码压缩包解压缩到D:\qt4.6.0  （比如）
 在命令行中进入上述目录，然后依次运行如下命令：
+"D:\Program Files\VC2008 Professional Edition\Common7\Tools\vsvars32.bat"
 set QMAKESPEC=win32-msvc2008
 set QTDIR=D:\qt4.6.0
 configure
