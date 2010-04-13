@@ -1,0 +1,71 @@
+保存歌星信息
+•	歌星名字
+•	歌星分类（港台，大陆，欧美组合等）
+•	歌星性别
+•	头像图片
+CREATE TABLE Singer(
+singerId INTEGER PRIMARY KEY,
+singerName VARCHAR(20),
+singerCategory VARCHAR(20),
+singerGender VARCHAR(2),
+singerPic VARCHAR(100)
+)
+一首歌曲需要保存的主要信息
+•	编号（用于数据表的主键）
+•	歌名（用于拼音点歌，字数点歌，笔画点歌）
+•	保存路径（用于读取歌曲文件以进行各种操作）
+•	所属分类（用于分类点歌）
+•	所属歌星（用于歌星点歌）
+•	所属语种（用于语种点歌）
+•	点播次数（用于热门排行）
+•	首拼音（用于拼音点歌）
+•	录入时间（用于最新歌曲）
+CREATE TABLE Song(
+songId INTEGER PRIMARY KEY,
+songName VARCHAR(100),
+songPath VARCHAR(100),
+songCategory VARCHAR(20),
+singerId INT,
+songLanguage VARCHAR(20),
+songPlayCount INT DEFAULT 0,
+pinyin VARCHAR(50) DEFAULT NULL,
+songRegTime DATETIME
+)
+  用于实现拼音输入来搜索汉字的数据表（用户实现拼音点歌和拼音选歌星）
+•	汉字
+•	首拼音
+CREATE TABLE Dic(
+word VARCHAR(4),
+pinyin VARCHAR(1)
+)
+  保存私人数据
+•	编号
+•	帐号
+•	密码
+CREATE TABLE User(
+userId INTEGER PRIMARY KEY,
+account VARCHAR(20),
+pwd VARCHAR(20)
+)
+  保存私人点歌数据
+•	编号
+•	用户编号
+•	歌曲编号
+•	添加时间
+CREATE TABLE PrivateSong(
+psongId INTEGER PRIMARY KEY,
+userId INT,
+songId INT,
+songSaveTime DATETIME
+)
+   保存已选歌曲
+•	编号
+•	歌曲编号
+•	是否优先
+•	是否已播放
+CREATE TABLE OrderList(
+orderId INTEGER PRIMARY KEY,
+songId INT,
+priority TINYINT DEFAULT 0,
+finished TINYINT DEFAULT 0
+)
