@@ -1,0 +1,66 @@
+
+安装软件
+=================
+1、配置管理工具Hg（mercurial）。
+http://bitbucket.org/tortoisehg/thg-winbuild/downloads/mercurial-1.5.1.msi
+
+2、VC2008。
+
+3、QT。
+下面是编译安装的方法。也可以参考网上介绍的其它安装方法。
+下载QT最新版本源码：
+http://qt.nokia.com/downloads/windows-cpp-vs2008
+把源码压缩包解压缩到D:\qt4.6.0  （比如）
+在命令行中进入上述目录，然后依次运行如下命令：
+set QMAKESPEC=win32-msvc2008
+set QTDIR=D:\qt4.6.0
+configure
+nmake
+configure的时间几十分钟，比较长，nmake就更恐怖了，有时一大半个晚上也没安装完。
+
+4、验证QT环境。
+验证QT环境
+1）新建一个目录HelloWorld
+2）在其中新建helloworld.cpp，内容如下：
+#include <QApplication>
+#include <QPushButton>
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     QPushButton hello("Hello world!");
+     hello.resize(100, 30);
+     hello.show();
+     return app.exec();
+ }
+3）命令行，进入HelloWorld目录。
+4）命令行中运行：
+qmake -project
+qmake
+nmake
+在debug目录生成了helloworld.exe文件。
+用nmake release命令可以编译release版本。
+
+
+
+配置库使用
+==================
+1、下载代码。
+hg clone https://disklvp.googlecode.com/hg/ disklvp
+
+2、本地修改后，通过下面命令提交修改（提交到本地库）：
+hg commit -m "注释"
+
+3、需要把本地代码同步到服务器时，执行如下命令：
+hg push
+然后输入自己的gmail账号，以及提交代码的密码（需要的找我要）。
+
+4、如果要新增文件，用下面命令增加，然后再hg commit提交：
+(注意，增加的时候不要把obj等垃圾文件add了，如果失误add了，就先撤销刚才操作??)
+hg add
+
+5、通过hg status可以查看未commit的修改。
+
+
+工程编译
+===================
+1、用VC打开KTV.vcproj编译即可。
