@@ -62,6 +62,17 @@ hg add
 5、通过hg status可以查看未commit的修改。
 
 
-工程编译
+工程编译(Windows)
 ===================
 1、用VC打开KTV.vcproj编译即可。
+
+
+工程编译(Linux)
+===================
+1、安装编译需要的工具qt和g++，以及配置管理工具Hg.安装qt的命令如下：（可不要doc和demos）
+sudo apt-get install qt4-dev-tools qt4-doc qt4-qtconfig qt4-demos qt4-designer libphonon-dev
+2、在KTV工程目录运行qmake根据pro生成Makefile。
+3、运行make编译，在pro所在目录生成KTV可执行文件，运行它即可。
+
+
+
