@@ -1,7 +1,7 @@
 #ifndef ATMOSPHERES_H_
 #define ATMOSPHERES_H_
 #include "SongListTemplate.h"
-#include <Phonon>
+#include <Phonon/MediaObject>
 
 class Atmospheres : public SongListTemplate {
 	DECLARE_SINGLETON(Atmospheres);

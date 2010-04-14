@@ -2,7 +2,7 @@
 #define PLAYSCREEN_H_
 #include "../../baselib/headers/GlobalData.h"
 #include "../headers/BaseTemplate.h"
-#include <Phonon>
+#include <Phonon/VideoPlayer>
 #include <QObject>
 
 class PlayScreen : public BaseTemplate {
