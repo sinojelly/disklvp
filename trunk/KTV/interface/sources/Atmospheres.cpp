@@ -1,4 +1,6 @@
 #include "../headers/Atmospheres.h"
+#include <QUrl>
+#include <QDir>
 
 Atmospheres::Atmospheres() : SongListTemplate() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Atmosphere.ini");
@@ -15,11 +17,12 @@ void Atmospheres::ActionToDo(){
 	DisplayData();
 	MyButton* p_mb = (MyButton*)this->sender();
 	QString midPath = "";
-	if(p_mb->Name() == "Atmosphere/jvimage1") midPath = QString::fromLocal8Bit("口哨.wav");
-	if(p_mb->Name() == "Atmosphere/jvimage2") midPath = QString::fromLocal8Bit("口哨.wav");
-	if(p_mb->Name() == "Atmosphere/jvimage3") midPath = QString::fromLocal8Bit("口哨.wav");
-	if(p_mb->Name() == "Atmosphere/jvimage4") midPath = QString::fromLocal8Bit("口哨.wav");
-	if (midPath == "")
+	if(p_mb->Name() == "Atmosphere/jvimage1") midPath = QString::fromLocal8Bit("file://"+QDir::currentPath()+"/鍙ｅ摠.wav");
+	if(p_mb->Name() == "Atmosphere/jvimage2") midPath = QString::fromLocal8Bit("file://"+QDir::currentPath()+"/鍙ｅ摠.wav");
+	if(p_mb->Name() == "Atmosphere/jvimage3") midPath = QString::fromLocal8Bit("file://"+QDir::currentPath()+"/鍙ｅ摠.wav");
+	if(p_mb->Name() == "Atmosphere/jvimage4") midPath = QString::fromLocal8Bit("file://"+QDir::currentPath()+"/鍙ｅ摠.wav");
+
+        if (midPath == "")
 	{
 		return;
 	}
@@ -27,7 +30,7 @@ void Atmospheres::ActionToDo(){
 	{
 		_music = Phonon::createPlayer(Phonon::MusicCategory);
 	}
-	_music->setCurrentSource(Phonon::MediaSource(midPath));
+	_music->setCurrentSource(Phonon::MediaSource(QUrl::fromLocalFile(midPath)));
 	_music->play();
 }
 void Atmospheres::ItemClick(){
