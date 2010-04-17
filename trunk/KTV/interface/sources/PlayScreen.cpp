@@ -1,7 +1,7 @@
 #include "../headers/PlayScreen.h"
 #include "../../sqlite/DB.h"
 #include <QTimer>
-
+#include <QUrl>
 
 PlayScreen::PlayScreen() : BaseTemplate(&GlobalData::TemplateImage1){
     _player =
@@ -61,7 +61,8 @@ void PlayScreen::NextSong()
 		//_player->play(Phonon::MediaSource(QString::fromLocal8Bit("D:\\Users\\Îèµ¸-»¨ÏÉ×Ó.DAT")));		
 		int fieldNo = db.GetRecords().record().indexOf("songPath");
 		QString songPath = db.GetRecords().value(fieldNo).toString();//QString::fromLocal8Bit(db.GetRecords().value(fieldNo).toString());
-		_player->play(Phonon::MediaSource(songPath));//(QString::fromLocal8Bit(songPath)));
+
+		_player->play(Phonon::MediaSource(QUrl::fromLocalFile(songPath)));//(QString::fromLocal8Bit(songPath)));
 
 		// É¾³ýorderlistÒÑ²¥·Å¸èÇú
 		fieldNo = db.GetRecords().record().indexOf("songId");
