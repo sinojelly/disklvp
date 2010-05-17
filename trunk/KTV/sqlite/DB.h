@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QVariant>
+#include <QSqlRecord>
 
 class DB{
 protected:

@@ -3,8 +3,9 @@
 SongListTemplate::SongListTemplate() : Template() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Songlist1.ini");
 	QString imageFile = GlobalData::ImagePrefix + "Common/Songlist.png";
-	this->AddButton(&config,0,&imageFile);
+	this->AddButton(&config,this,0,&imageFile);
 	this->_setupSignalConnection();
+	this->SetupPageSignalConnection();
 }
 void SongListTemplate::_setupSignalConnection(){
 	for(int i=1;i<this->_ITEMCOUNT + 1;i++){
@@ -36,8 +37,9 @@ void SongListTemplate::DisplayData(){
 
 void SongListTemplate::SetItemData(const QList<SongStruct>& songList){
 	int i = 1;
-	for(;i<songList.size() + 1 && i < this->_ITEMCOUNT + 1;i++){
-		MyButton* p_mb = this->FindButton("songlist" + QString::number(i));
+	MyButton* p_mb = 0;
+	for(;(i<songList.size() + 1) && (i < this->_ITEMCOUNT + 1);i++){
+		p_mb = this->FindButton("songlist" + QString::number(i));
 		if(p_mb){
 			QString txt = songList.at(i-1).Name;
 
@@ -60,7 +62,7 @@ void SongListTemplate::SetItemData(const QList<SongStruct>& songList){
 		}
 	}
 	for(;i<this->_ITEMCOUNT + 1;i++){
-		MyButton* p_mb = this->FindButton("songlist" + QString::number(i));
+		p_mb = this->FindButton("songlist" + QString::number(i));
 		if(p_mb){
 			p_mb->hide();
 			p_mb->Enabled();

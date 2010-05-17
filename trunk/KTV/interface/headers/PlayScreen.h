@@ -1,11 +1,11 @@
 #ifndef PLAYSCREEN_H_
 #define PLAYSCREEN_H_
 #include "../../baselib/headers/GlobalData.h"
-#include "../headers/BaseTemplate.h"
+#include "../headers/Template.h"
 #include <Phonon/VideoPlayer>
 #include <QObject>
 
-class PlayScreen : public BaseTemplate {
+class PlayScreen : public Template{
 	Q_OBJECT;
 	DECLARE_SINGLETON(PlayScreen);
 public:

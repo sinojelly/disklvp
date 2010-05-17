@@ -1,8 +1,9 @@
 #include "../headers/Star.h"
+#include "../headers/SongList.h"
 
 Star::Star() : StarListTemplate() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Star2.ini");
-	this->AddButton(&config);
+	this->AddButton(&config, this);
 	this->SetupSignalConnection(config.GetNameList());
 	this->_queryStr = "SELECT * FROM Singer ORDER BY singerId DESC";
 	this->DisplayData();
@@ -20,8 +21,10 @@ void Star::ActionToDo(){
 void Star::ItemClick(){
 	QString queryString = "SELECT * FROM song ORDER BY songId DESC";
 	MyButton* p_mb = (MyButton*)this->sender();
+
 	int index = ItemTextToInt(p_mb->Name());
 	if(index > 0 && index <= this->_singerList.size())
 		queryString = "SELECT a.*,(SELECT COUNT(*) FROM OrderList WHERE a.songId=OrderList.songId) AS BeOrdered FROM song AS a WHERE a.singerId=" + QString::number(this->_singerList.at(index - 1).SingerId) + "  ORDER BY a.songId DESC";
-	KtvScreenController::GetController()->Forward(new SongList(queryString));
+	KtvScreenController::GetController()->Forward(
+		new SongList(queryString));
 }

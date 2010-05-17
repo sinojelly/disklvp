@@ -2,7 +2,7 @@
 
 Pinyin::Pinyin() : SongListTemplate() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Pinyin.ini");
-	this->AddButton(&config);
+	this->AddButton(&config, this);
 	this->SetupSignalConnection(config.GetNameList());
 
 	MyButton* p_mb = this->FindButton("Pinyin/show");
@@ -23,6 +23,7 @@ Pinyin::Pinyin() : SongListTemplate() {
 	this->DisplayData();
 }
 void Pinyin::ActionToDo(){
+
 	MyButton* p_mb = (MyButton*)this->sender();
 
 	if(p_mb->Name() == "Pinyin/del"){
@@ -39,4 +40,5 @@ void Pinyin::ActionToDo(){
 
 	this->_queryStr = "SELECT a.*,(SELECT COUNT(*) FROM OrderList WHERE a.songId=OrderList.songId) AS BeOrdered FROM Song AS a WHERE a.pinyin LIKE '"+ this->_txt +"%'";
 	this->DisplayData();
+
 }

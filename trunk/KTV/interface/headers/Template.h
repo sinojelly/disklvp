@@ -6,8 +6,9 @@
 #include <QPen>
 #include <QList>
 #include <QString>
+#include <QWidget>
 
-class Template : public BaseTemplate{
+class Template : public QWidget, public BaseTemplate{
 	Q_OBJECT;
 protected:
 	int _currentPage;
@@ -18,13 +19,16 @@ private:
 public:
 	Template(const QImage* p_image = &GlobalData::TemplateImage2);
 	virtual void ShowCurrentPage();
-	virtual void ShowTotalPages();
-	virtual void NextPage();
-	virtual void PreviousPage();
+	virtual void ShowTotalPages();	
 	virtual void InitialPageZone(int currentPage=1,int totalPage=1);
 	virtual void DisplayData();
 	virtual void SetupSignalConnection(const QList<QString> nameList);
+public:
+	void SetupPageSignalConnection(void);
+
 public slots:
 	virtual void ActionToDo();
+	virtual void NextPage();
+	virtual void PreviousPage();
 };
 #endif /* GENERALSCREENTEMPLATE_H_ */

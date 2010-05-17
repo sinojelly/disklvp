@@ -7,13 +7,21 @@
 
 int main(int argc, char *argv[])
 {
+	
 	DbUtil::UpdateSongLibrary();
 
 	Q_INIT_RESOURCE(app);
 
     QApplication a(argc, argv);
+    a.setApplicationName("KTV");
 
-    KtvScreenController::GetController()->Forward(new KtvMainScreen());
+	KtvMainScreen *p_mainScreen = new KtvMainScreen();
+	
+    //a.setActiveWindow(new KtvMainScreen());
+	KtvScreenController::GetController()->setMainScreen(p_mainScreen);
+    p_mainScreen->display();
+
+    //KtvScreenController::GetController()->Forward(new KtvMainScreen());
 
     /*return*/int ret = a.exec();
 	Atmospheres::Instance()->Clear();

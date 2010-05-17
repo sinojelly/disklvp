@@ -12,7 +12,7 @@ KtvScreenController::~KtvScreenController(){
 	//if(this->_p_widget) delete this->_p_widget;
 }
 
-// »»Ò»ÖÖWidget(»­²¼)
+// æ¢ä¸€ç§Widget(ç”»å¸ƒ)
 void KtvScreenController::Forward(QWidget* p_widget){
 	if(!this->_p_screens->isEmpty())
 		this->_p_screens->top()->hide();
@@ -20,8 +20,8 @@ void KtvScreenController::Forward(QWidget* p_widget){
 	p_widget->show();
 }
 
-// Ìæ»»_p_screensµÄtop widget(Ã¿´ÎÔÚÓÃµÄ¾ÍÊÇtop widget)
-// _p_widget±£´æÇ°Ò»´ÎµÄ_p_screensµÄtop widget
+// æ›¿æ¢_p_screensçš„top widget(æ¯æ¬¡åœ¨ç”¨çš„å°±æ˜¯top widget)
+// _p_widgetä¿å­˜å‰ä¸€æ¬¡çš„_p_screensçš„top widget
 void KtvScreenController::Replace(QWidget* p_widget){
 	if(!this->_p_screens->isEmpty()){
 		this->_p_screens->top()->hide();
@@ -32,14 +32,14 @@ void KtvScreenController::Replace(QWidget* p_widget){
 	p_widget->show();
 }
 
-// µ¥¼þÄ£Ê½
+// å•ä»¶æ¨¡å¼
 KtvScreenController* KtvScreenController::GetController(){
 	if(!KtvScreenController::_p_ktv_ctl)
 		KtvScreenController::_p_ktv_ctl = new KtvScreenController();
 	return KtvScreenController::_p_ktv_ctl;
 }
 
-//ÍË»ØÕ»µÄÏÂÒ»¸öwidget
+//é€€å›žæ ˆçš„ä¸‹ä¸€ä¸ªwidget
 void KtvScreenController::Back(){
 	if(this->_p_screens->size() > 1){
 		this->_p_screens->top()->hide();
@@ -51,7 +51,7 @@ void KtvScreenController::Back(){
 	}
 }
 
-//°ÑÕ»×îÉÏÃæÁ½ÔªËØ½»»»
+//æŠŠæ ˆæœ€ä¸Šé¢ä¸¤å…ƒç´ äº¤æ¢
 void KtvScreenController::Toggle(){
 	if(this->_p_screens->size() < 2) return;
 	QWidget* p_widget1 = this->_p_screens->pop();
@@ -62,7 +62,7 @@ void KtvScreenController::Toggle(){
 	this->_p_screens->push(p_widget2);
 }
 
-//ÏÔÊ¾Õ»µ××îºóÒ»¸öÔªËØ£¬ÆäËüÔªËØÉ¾µô
+//æ˜¾ç¤ºæ ˆåº•æœ€åŽä¸€ä¸ªå…ƒç´ ï¼Œå…¶å®ƒå…ƒç´ åˆ æŽ‰
 void KtvScreenController::Home(){
 	if(this->_p_screens->size() < 2) return;
 	while(this->_p_screens->size() > 1){
@@ -73,4 +73,14 @@ void KtvScreenController::Home(){
 		this->_p_widget->hide();
 	}
 	this->_p_screens->top()->show();
+}
+
+void KtvScreenController::setMainScreen(QWidget* p_mainScreen)
+{
+	_p_mainScreen = p_mainScreen;
+}
+
+QWidget* KtvScreenController::getMainScreen(void)
+{
+	return _p_mainScreen;
 }

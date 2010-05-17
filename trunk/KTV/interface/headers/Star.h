@@ -2,7 +2,6 @@
 #define STARFILTERSCREEN_H_
 #include "StarListTemplate.h"
 #include "../KtvScreenController.h"
-#include "SongList.h"
 
 class Star : public StarListTemplate {
 public:

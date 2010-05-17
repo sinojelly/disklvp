@@ -1,7 +1,6 @@
 #ifndef MAINSCREEN_H_
 #define MAINSCREEN_H_
 #include "../../baselib/headers/GlobalData.h"
-#include "../headers/BaseTemplate.h"
 #include "../KtvScreenController.h"
 #include "Newest.h"
 #include "Private.h"
@@ -11,23 +10,41 @@
 #include "Star.h"
 #include "Stroke.h"
 #include "Category.h"
+#include "BaseTemplate.h"
+#include <QtGui/QMainWindow>
 
-class KtvMainScreen : public BaseTemplate {
+class KtvMainScreen : public QMainWindow, public BaseTemplate{
 	Q_OBJECT;
 private:
 	void _setupSignalConnection();
 public:
-	KtvMainScreen();
+	KtvMainScreen(const QImage* p_image = &GlobalData::TemplateImage1,QWidget *parent = 0);
+	void display(void);
+
+protected:
+	void paintEvent(QPaintEvent *);
+	void mouseDoubleClickEvent(QMouseEvent *);
+	void mousePressEvent(QMouseEvent *);
+private:
+	const QImage* _p_image;
+
 public slots:
-	void AllSongClick() const;
-	void NewestSongClick() const;
-	void HotOrderClick() const;
-	void PrivateSongClick() const;
-	void PinyinFilterClick() const;
-	void LanguageCategoryFilterClick() const;
-	void DigitalFilterClick() const;
-	void StarFilterClick() const;
-	void BihuaFilterClick() const;
-	void CategoryFilterClick() const;
+	void NextPage();
+	void PreviousPage();
+	void HomePage();
+	void Back();
+	void PlayAndPouse();
+	void Magic();
+	void Silent();
+	void OriginalVoice();
+	void Atmosphere();
+	void Resing();
+	void Service();
+	void SingWith();
+	void Effect();
+	void NextSong();
+	void VolumeUp();
+	void VolumeDown();
+	void ViewSelected();
 };
 #endif /* MAINSCREEN_H_ */

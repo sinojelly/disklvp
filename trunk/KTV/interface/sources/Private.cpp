@@ -2,7 +2,7 @@
 
 Private::Private() : SongListTemplate() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Private.ini");
-	this->AddButton(&config);
+	this->AddButton(&config, this);
 	this->SetupSignalConnection(config.GetNameList());
 	this->_queryStr = "SELECT a.* FROM Song AS a,PrivateSong AS b WHERE a.songId=b.songId AND b.userId=" + QString::number(GlobalData::CurrentUserId) + " ORDER BY a.songId DESC";
 	this->DisplayData();

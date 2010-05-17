@@ -5,6 +5,7 @@
 #include "../../baselib/headers/DataStruct.h"
 #include "../../sqlite/DbUtil.h"
 
+
 class SongListTemplate : public Template{
 	Q_OBJECT;
 private:
