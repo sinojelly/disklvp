@@ -1,9 +1,11 @@
 #ifndef ATMOSPHERES_H_
 #define ATMOSPHERES_H_
 #include "SongListTemplate.h"
+#include "../../Singleton.h"
 #include <Phonon/MediaObject>
 
-class Atmospheres : public SongListTemplate {
+class Atmospheres : public SongListTemplate{
+	Q_OBJECT;
 	DECLARE_SINGLETON(Atmospheres);
 public:
 	Atmospheres();

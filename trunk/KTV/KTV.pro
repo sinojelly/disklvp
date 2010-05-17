@@ -3,9 +3,9 @@ TARGET = KTV
 QT += core \
     gui \
     sql \
-    qt3support \
     phonon
-HEADERS += interface/headers/Atmospheres.h \
+HEADERS += interface/headers/HomeWidget.h \
+    interface/headers/Atmospheres.h \
     interface/headers/Effection.h \
     interface/headers/Register.h \
     interface/headers/MainInterface.h \
@@ -33,7 +33,8 @@ HEADERS += interface/headers/Atmospheres.h \
     interface/KtvScreenController.h \
     baselib/headers/Config.h \
     baselib/headers/MyButton.h
-SOURCES += interface/sources/Atmospheres.cpp \
+SOURCES += interface/sources/HomeWidget.cpp \
+    interface/sources/Atmospheres.cpp \
     interface/sources/Effection.cpp \
     interface/sources/Register.cpp \
     interface/sources/Pinyin.cpp \

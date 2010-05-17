@@ -1,20 +1,34 @@
 #include "../headers/Template.h"
 #include "../../Debug.h"
+#include "../KtvScreenController.h"
 
-Template::Template(const QImage* p_image): BaseTemplate(p_image){
+Template::Template(const QImage* p_image): 
+	QWidget(KtvScreenController::GetController()->getMainScreen(),Qt::FramelessWindowHint), 
+		BaseTemplate(/*p_image*/){
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Page.ini");
-	this->AddButton(&config);
+	this->AddButton(&config, this);
 	this->_p_currentPageBut = this->FindButton("Page/current");
 	this->_p_totalPageBut = this->FindButton("Page/total");
 	this->InitialPageZone(1,1);
-}
-void Template::SetupSignalConnection(const QList<QString> nameList){
-	for(int i=0;i<nameList.size();i++){
-		MyButton* p_mb = this->FindButton(nameList.at(i));
-		if(p_mb)QObject::connect(p_mb, SIGNAL(click()),this, SLOT(ActionToDo()));
-	}
+	this->setGeometry(0, 0+200,1024,568);
 }
 
+void Template::SetupSignalConnection(const QList<QString> nameList){
+	MyButton* p_mb;
+	for(int i=0;i<nameList.size();i++){
+		p_mb = this->FindButton(nameList.at(i));
+		if(p_mb)QObject::connect(p_mb, SIGNAL(click()),this, SLOT(ActionToDo()));
+	}
+
+	SetupPageSignalConnection();
+}
+
+void Template::SetupPageSignalConnection(void){
+	MyButton* p_mb = this->FindButton("Toolsicon/pagedown");
+	if(p_mb)QObject::connect(p_mb, SIGNAL(click()),this, SLOT(NextPage()));
+	p_mb = this->FindButton("Toolsicon/pageup");
+	if(p_mb)QObject::connect(p_mb, SIGNAL(click()),this, SLOT(PreviousPage()));
+}
 void Template::InitialPageZone(int currentPage,int totalPage){
 	QFont font(GlobalData::Font, GlobalData::PageNumberSize, QFont::Bold);
 	QPen pen;

@@ -41,7 +41,8 @@ void MyButton::SetImage(QImage* p_image){
 	if(this->_p_image) delete this->_p_image;
 	this->_p_image = p_image;
 	this->setGeometry(this->_x,this->_y,this->_p_image->width(),this->_p_image->height());
-	this->repaint();
+	//this->repaint();
+	this->update();
 }
 const QImage* MyButton::Image() const{
 	return this->_p_image;
@@ -76,7 +77,8 @@ void MyButton::SetPen(QPen* p_pen){
 }
 void MyButton::SetText(const QString& text){
 	this->_text = text;//trUtf8(text);
-	this->repaint();
+	//this->repaint();
+	this->update();
 }
 void   MyButton::SetTextPoint(int x,int y){
 	this->_x = x;
@@ -115,7 +117,8 @@ void StarButton::SetImage(const QString& file,int x,int y){
 	this->_p_imageStar = new QImage(file);
 	this->_pic_x = x;
 	this->_pic_y = y;
-	this->repaint();
+	//this->repaint();
+	this->update();
 }
 StarButton::~StarButton(){
 	if(this->_p_imageStar) delete this->_p_imageStar;

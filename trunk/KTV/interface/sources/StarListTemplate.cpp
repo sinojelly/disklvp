@@ -3,7 +3,7 @@
 StarListTemplate::StarListTemplate() : Template() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Starlist.ini");
 	QString imageFile = GlobalData::ImagePrefix + "Common/Starlist.png";
-	this->AddButton(&config,1,&imageFile);
+	this->AddButton(&config, this,1,&imageFile);
 	this->_setupSignalConnection();
 }
 void StarListTemplate::_setupSignalConnection(){

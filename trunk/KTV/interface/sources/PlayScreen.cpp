@@ -3,17 +3,29 @@
 #include <QTimer>
 #include <QUrl>
 
-PlayScreen::PlayScreen() : BaseTemplate(&GlobalData::TemplateImage1){
+
+PlayScreen::PlayScreen() : Template(){
     _player =
         new Phonon::VideoPlayer(Phonon::VideoCategory, this/*, window, parentWidget*/);
-    //_player->play(Phonon::MediaSource(QString::fromLocal8Bit("D:\\Projects\\Google\\disklvp\\陈卫民\\2004.mpg"))); //trUtf8
+    //_player->play(Phonon::MediaSource(QString::fromLocal8Bit("D:\\Projects\\Google\\disklvp\\锟斤拷锟斤拷锟斤拷\\2004.mpg"))); //trUtf8
     //player->show();
 	_player->move(110, 220);
     _player->resize(800, 500 );
 
-	_timer = new QTimer(this);   //创建并启动定时器
-	connect(_timer, SIGNAL(timeout()), this, SLOT(CheckPlaying()));   //每当定时器超时时调用函数CheckPlaying
+	_timer = new QTimer(this);   //锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷
+	connect(_timer, SIGNAL(timeout()), this, SLOT(CheckPlaying()));
 	_timer->start(1000*2); //2s
+
+#if 0
+	QList<Phonon::EffectDescription> effectDescriptions =
+		Phonon::BackendCapabilities::availableAudioEffects();
+
+	{
+		int i=0;
+		QMessageBox::information(NULL, "Title", ((Phonon::EffectDescription)effectDescriptions.at(i))., QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+	}
+
+#endif
 }
 
 void PlayScreen::Silent(){
@@ -58,16 +70,15 @@ void PlayScreen::NextSong()
 	if(!db.GetRecords().exec()) return; //throw "exec in getsong_page error.";
 	//QList<SingerStruct> list;
 	while(db.GetRecords().next()){
-		//_player->play(Phonon::MediaSource(QString::fromLocal8Bit("D:\\Users\\舞蹈-花仙子.DAT")));		
+		//_player->play(Phonon::MediaSource(QString::fromLocal8Bit("D:\\Users\\锟借蹈-锟斤拷锟斤拷锟斤拷.DAT")));		
 		int fieldNo = db.GetRecords().record().indexOf("songPath");
 		QString songPath = db.GetRecords().value(fieldNo).toString();//QString::fromLocal8Bit(db.GetRecords().value(fieldNo).toString());
 
 		_player->play(Phonon::MediaSource(QUrl::fromLocalFile(songPath)));//(QString::fromLocal8Bit(songPath)));
 
-		// 删除orderlist已播放歌曲
 		fieldNo = db.GetRecords().record().indexOf("songId");
 		int songId = db.GetRecords().value(fieldNo).toInt();
-		sql = QString("delete from OrderList where OrderList.songId==:songId"); // 不能直接加QString(songId)，后面根本没加上去		
+		sql = QString("delete from OrderList where OrderList.songId==:songId"); 
 		db.SetQueryText(sql);
 		db.BindParameter(":songId",songId);
 		db.ExecuteNoQuery();

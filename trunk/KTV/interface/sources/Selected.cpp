@@ -1,8 +1,9 @@
 #include "../headers/Selected.h"
+#include "../KtvScreenController.h"
 
 Selected::Selected() : SongListTemplate() {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Selected.ini");
-	this->AddButton(&config);
+	this->AddButton(&config, KtvScreenController::GetController()->getMainScreen());
 	this->SetupSignalConnection(config.GetNameList());
 	this->_queryStr = "SELECT a.*,b.orderId,b.priority,b.finished FROM Song AS a,OrderList AS b WHERE a.songId=b.songId ORDER BY b.finished DESC,b.priority DESC,b.orderId ASC";
 	this->DisplayData();

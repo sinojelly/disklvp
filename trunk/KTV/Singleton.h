@@ -2,30 +2,30 @@
 #define _SINGLETON_H_
 
 /**
-µ¥¼þÄ£Ê½ÉùÃ÷ºê.
-Õâ¸öºêÓÐÈçÏÂ¼¸¸öÌØµã:
-1¡¢²ÉÓÃ¾Ö²¿¾²Ì¬±äÁ¿·½Ê½£¬ÒÔ±ãÔÚÈÎºÎÊ±ºòµ÷ÓÃInstance¶¼¿ÉÒÔ³õÊ¼»¯ÊµÀý²¢µÃµ½ÊµÀýÖ¸Õë.
-2¡¢²»ÒÀÀµÆäËû¾²Ì¬¡¢È«¾Ö±äÁ¿£¬Îª×Ô¶¯×¢²áÌá¹©Ìõ¼þ¡£
-3¡¢Ïß³Ì°²È«£¬ÈÎºÎÇé¿öÏÂ¶¼Ö»»áÖ´ÐÐÒ»´Î¹¹Ôìº¯Êý¡£
-\warning Ê¹ÓÃÕßÐèÒª°Ñ¹¹Ôìº¯ÊýÉùÃ÷ÎªË½ÓÐµÄ.
+ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Øµï¿½:
+1ï¿½ï¿½ï¿½ï¿½ï¿½Ã¾Ö²ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Îºï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Instanceï¿½ï¿½ï¿½ï¿½ï¿½Ô³ï¿½Ê¼ï¿½ï¿½Êµï¿½ï¿½Ãµï¿½Êµï¿½ï¿½Ö¸ï¿½ï¿½.
+2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ô¶ï¿½×¢ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+3ï¿½ï¿½ï¿½ß³Ì°ï¿½È«ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½Ö»ï¿½ï¿½Ö´ï¿½ï¿½Ò»ï¿½Î¹ï¿½ï¿½ìº¯ï¿½ï¿½
+\warning Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ñ¹ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªË½ï¿½Ðµï¿½.
 \author chenguodong
 */
 #define DECLARE_SINGLETON(theClass)  \
     public: \
         static theClass *Instance() \
         { \
-            static theClass *m_pInstance = NULL; /*Ö¸Õë¸³Öµ¹ý³ÌÖÐÈÎÎñÇÐ»»£¬±àÒëÆ÷ÈçºÎ´¦Àí? */\
+            static theClass *m_pInstance = NULL; /*Ö¸ï¿½ë¸³Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½? */\
             if (NULL == m_pInstance)  \
             { \
-                static theClass inst; /*µÚÒ»´ÎÊ¹ÓÃµÄÊ±ºòÊµÀý»¯£¬±ÜÃâÓÃµ½Ò»¸öÎ´ÊµÀý»¯µÄ¶ÔÏó*/\
+            	static theClass inst;\
                 m_pInstance = &inst; \
             } \
             return m_pInstance; \
         } \
     private: \
-        /*theClass(){} Ê¹ÓÃ´ËºêÈËÎª±£Ö¤¹¹Ôìº¯ÊýË½ÓÐ,²»±£Ö¤ËüË½ÓÐÒ²ÎÊÌâ²»´ó£¬Îö¹¹Ë½ÓÐÍ¬Ñù²»ÄÜÉú³ÉÕ»±äÁ¿*/ \
+        /*theClass(){} Ê¹ï¿½Ã´Ëºï¿½ï¿½ï¿½Îªï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½Ë½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ë½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½â²»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½*/ \
         theClass(theClass const &); \
         theClass &operator =(theClass &); \
-        //~theClass(){} /*Îö¹¹º¯ÊýË½ÓÐ£¬±ÜÃâÉú³ÉÕ»±äÁ¿; µ¥¼þÄ£Ê½ÉúÃüÖÜÆÚÊÇÕû¸öÓ¦ÓÃ³ÌÐòÉúÃüÖÜÆÚËùÒÔÎö¹¹º¯ÊýÒ»°ã²»»á±»µ÷ÓÃ*/
+        //~theClass(){} /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½; ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ã²»ï¿½á±»ï¿½ï¿½ï¿½ï¿½*/
         
 #endif

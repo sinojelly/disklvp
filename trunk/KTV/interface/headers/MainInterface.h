@@ -1,6 +1,7 @@
 #ifndef KTVSCREENINTERFACE_H_
 #define KTVSCREENINTERFACE_H_
 
+#if 0
 class MainInterface{
 public:
 	virtual void NextPage() = 0;
@@ -21,5 +22,5 @@ public:
 	virtual void VolumeDown() = 0;
 	virtual void ViewSelected() = 0;
 };
-
+#endif
 #endif /* KTVSCREENINTERFACE_H_ */

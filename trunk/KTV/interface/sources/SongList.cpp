@@ -1,13 +1,14 @@
 #include "../headers/SongList.h"
 
-SongList::SongList(const QString& queryStr) : Template(&GlobalData::TemplateImage3) {
+SongList::SongList(const QString& queryStr) : SongListTemplate()/*Template(parent)*/ {
 	InterfaceConfig config(GlobalData::ConfigPrefix + "Songlist2.ini");
 	QString imageFile = GlobalData::ImagePrefix + "Common/Songlist.png";
-	this->AddButton(&config,0,&imageFile);
+	this->AddButton(&config, this, 0, &imageFile);
 	this->_setupSignalConnection();
 	this->_queryStr = queryStr;
 	this->DisplayData();
 }
+
 void SongList::_setupSignalConnection(){
 	for(int i=1;i<this->_ITEMCOUNT + 1;i++){
 		MyButton* p_mb = this->FindButton("songlist" + QString::number(i));
@@ -39,7 +40,7 @@ void SongList::DisplayData(){
 
 void SongList::SetItemData(const QList<SongStruct>& songList){
 	int i = 1;
-	for(;i<songList.size() + 1 && i < this->_ITEMCOUNT + 1;i++){
+	for(;(i<songList.size() + 1) && (i < this->_ITEMCOUNT + 1);i++){
 		MyButton* p_mb = this->FindButton("songlist" + QString::number(i));
 		if(p_mb){
 			QString txt = songList.at(i-1).Name;

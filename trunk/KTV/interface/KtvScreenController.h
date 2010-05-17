@@ -9,9 +9,12 @@ private:
 	KtvScreenController();
 	QStack<QWidget*>* _p_screens;
 	QWidget* _p_widget;
+	QWidget* _p_mainScreen;
 public:
 	~KtvScreenController();
 	static KtvScreenController* GetController();
+	void setMainScreen(QWidget*);
+	QWidget* getMainScreen(void);
 	void Forward(QWidget*);
 	void Replace(QWidget*);
 	void Back();

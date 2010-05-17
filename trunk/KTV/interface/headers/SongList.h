@@ -1,14 +1,16 @@
 #ifndef ALLSCREEN_H_
 #define ALLSCREEN_H_
-#include "Template.h"
+//#include "Template.h"
+#include "SongListTemplate.h"
 #include <QList>
 #include <QString>
 #include "../../baselib/headers/DataStruct.h"
 #include "../../baselib/headers/GlobalData.h"
 #include "../../sqlite/DbUtil.h"
+#include <QWidget>
 
 
-class SongList : public Template{
+class SongList : public SongListTemplate{
 	Q_OBJECT;
 private:
 	static int const _ITEMCOUNT = 8;
